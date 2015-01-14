@@ -1,6 +1,10 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
+  before do
+      let(:user) { User.new(name: 'blah', password: 'hahaha') }
+  end
+
   test "should get index" do
     get :index
     assert_response :success

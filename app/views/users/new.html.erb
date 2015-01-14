@@ -11,15 +11,15 @@
 </div>
 
 <%= form_for @user do |user|%>
-<div>
+<div id='para1'>
 	<%= user.label(:name, "Full Name ") %>
 	<%= user.text_field :name %>
 </div>
-<div>
+<div id='para1'>
 	<%= user.label(:password, "Password ") %>
 	<%= user.password_field :password %>
 </div>
-<div>
+<div id='para1'>
 	<%= user.label(:password_confirmation, "Password Confirmation ") %>
 	<%= user.password_field :password_confirmation %>
 </div>
@@ -27,3 +27,5 @@
 	<%= submit_tag "Register" %>
 </div>
 <% end %>
+
+<%= button_to 'Login', login_path %>

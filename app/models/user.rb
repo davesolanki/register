@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 require 'digest/md5'
+
+	mount_uploader :image, ImageUploader
 	#attr_accessible :name, :password, :password_confirmation
 	before_save :encrypt_password
 
@@ -8,7 +10,7 @@ require 'digest/md5'
 		:length =>
 		{
 			:minimum => 4,
-			:allow_blank => TRUE
+			:allow_blank => FALSE
 		}
 
 	validates :password,
@@ -28,4 +30,12 @@ require 'digest/md5'
 		self.password = Digest::MD5.hexdigest(password)
 	end
 
+		def self.validate_login(name,password)
+		user = User.find_by_name(name)
+		if user && user.password == Digest::MD5.hexdigest(password)
+			user
+		else
+			nil
+		end
+	end
 end

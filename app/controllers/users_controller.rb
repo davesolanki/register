@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
+  before_action :check_login, :only => [:index]
+  
   def index
+    
   end
 
   def show
@@ -21,10 +24,10 @@ class UsersController < ApplicationController
   	if @user.save
   		flash[:status] = TRUE
   		flash[:alert] = "Congrats! You have successfully registered .. "
+      redirect_to login_path
   	else
   		flash[:status] = FALSE
   		flash[:alert] = @user.errors.full_messages
   	end
-  	redirect_to register_path
   end
 end
